@@ -206,6 +206,7 @@ class ElasticSink(BatchSink):
             scheme = "https"
             config["ca_certs"] = self.config.get("ssl_ca_file")
 
+        config["verify_certs"] = self.config.get("verify_certs", True)
         config["hosts"] = [f"{scheme}://{self.config['host']}:{self.config['port']}"]
         config["request_timeout"] = self.config["request_timeout"]
         config["retry_on_timeout"] = self.config["retry_on_timeout"]
